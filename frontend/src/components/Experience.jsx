@@ -7,9 +7,9 @@ const experience = [
   },
   {
     role: 'Hackathon Competitor',
-    company: 'PennApps XXVI · HackHarvard 2024',
+    company: 'Major League Hacking',
     date: 'September 2025 - Present',
-    desc: 'Won Best Design at PennApps XXVI for "noogie," a news aggregation platform leveraging NLP and clustering algorithms, and Best Use of Cloudflare at HackHarvard for "Eyrie," a real-time crowd monitoring system designed to prevent crowd crush events.',
+    desc: 'Built full-stack applications in small teams under 36-hour deadlines, splitting responsibilities across frontend, backend, and ML while picking up unfamiliar tools like NLP pipelines, vector search, computer vision, and WebRTC on the fly. Each hackathon forced rapid collaboration and scoping decisions that carried into future projects.',
   },
   {
     role: 'Data Analytics Intern',
