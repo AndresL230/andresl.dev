@@ -296,6 +296,7 @@ section {
   background: none;
   border: none;
   font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
   color: inherit;
   cursor: pointer;
   display: grid;
@@ -309,6 +310,15 @@ section {
 
 .proj-summary:hover .proj-name {
   color: var(--accent);
+}
+
+.proj-summary:focus {
+  outline: none;
+}
+
+.proj-summary:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .proj-summary-left {
