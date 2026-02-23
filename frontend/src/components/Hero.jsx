@@ -1,4 +1,9 @@
+import { useState } from 'react'
+import ContactModal from './ContactModal'
+
 function Hero() {
+  const [contactOpen, setContactOpen] = useState(false)
+
   return (
     <section className="hero" id="hero">
       <div className="container">
@@ -54,19 +59,21 @@ function Hero() {
               </svg>
             </a>
 
-            <a
-              href="mailto:"
+            <button
               className="hero-icon"
               aria-label="Email"
+              onClick={() => setContactOpen(true)}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m2 7 10 7 10-7" />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>
+
+      {contactOpen && <ContactModal onClose={() => setContactOpen(false)} />}
     </section>
   )
 }
