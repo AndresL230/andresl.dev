@@ -43,6 +43,18 @@ function Hero() {
             </a>
 
             <a
+              href="https://devpost.com/AndresL230"
+              target="_blank"
+              rel="noreferrer"
+              className="hero-icon"
+              aria-label="Devpost"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.002 1.61L0 12.004 6.002 22.39h11.996L24 12.004 17.998 1.61zm1.593 4.084h3.947c3.605 0 6.276 1.695 6.276 6.31 0 4.436-3.21 6.302-6.456 6.302H7.595zm2.517 2.449v7.714h1.241c2.446 0 3.851-1.348 3.851-3.875 0-2.676-1.405-3.839-3.851-3.839z"/>
+              </svg>
+            </a>
+
+            <a
               href="mailto:"
               className="hero-icon"
               aria-label="Email"

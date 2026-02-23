@@ -20,6 +20,14 @@ function Footer() {
             linkedin
           </a>
           <a
+            href="https://devpost.com/AndresL230"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-link"
+          >
+            devpost
+          </a>
+          <a
             href="mailto:andreslopez.23061@gmail.com"
             className="footer-link"
           >
