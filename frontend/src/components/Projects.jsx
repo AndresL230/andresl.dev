@@ -2,35 +2,60 @@ const projects = [
   {
     name: 'noogie',
     award: 'Best Design — PennApps XXVI',
-    desc: 'News aggregation platform that uses NLP and clustering algorithms to group and summarize breaking news in real time.',
+    desc: 'News aggregation platform that groups and summarizes breaking news in real time.',
+    highlights: [
+      'Hugging Face transformers generate semantic embeddings per article',
+      'Unsupervised clustering groups related stories across sources into unified topics',
+      'React frontend surfaces deduplicated threads, cutting through redundancy',
+    ],
     tech: ['Python', 'React', 'Hugging Face', 'NLP'],
-    url: null,
+    url: 'https://github.com/ruslannnn2/noogie',
   },
   {
     name: 'Eyrie',
     award: 'Best Use of Cloudflare — HackHarvard',
-    desc: 'Real-time crowd monitoring system designed to prevent crowd crush events using computer vision and density estimation.',
+    desc: 'Real-time crowd monitoring system designed to prevent crowd crush events.',
+    highlights: [
+      'CV models estimate per-zone crowd density from live camera feeds',
+      'Crush-risk thresholds trigger instant alerts before dangerous densities form',
+      'Cloudflare Workers handle edge processing with near-zero round-trip latency',
+    ],
     tech: ['Python', 'Computer Vision', 'Cloudflare'],
-    url: null,
+    url: 'https://github.com/treehill05/eyrie',
   },
   {
-    name: 'PointPath',
-    award: 'Capital One Tech Summit',
-    desc: 'Credit card rewards optimization platform that helps users maximize points across spending categories.',
-    tech: ['React', 'Node.js', 'REST APIs'],
-    url: 'https://github.com/AndresL230/PointPath',
+    name: 'Sapling',
+    award: 'Eduhack Track Winner — Civichacks 2026',
+    desc: 'AI study companion with live knowledge graph visualization and adaptive quizzing.',
+    highlights: [
+      'FastAPI backend dynamically builds concept graphs persisted in SQLite',
+      'D3.js renders a live, interactive knowledge graph as topics are explored',
+      'OpenAI drives quizzing across Socratic, expository, and teachback modes',
+    ],
+    tech: ['React', 'Python', 'FastAPI', 'OpenAI API', 'D3.js', 'SQLite'],
+    url: 'https://github.com/Jose-Gael-Cruz-Lopez/sapling',
   },
   {
     name: 'ETL Pipeline',
     award: null,
-    desc: 'Financial data ETL system that extracts stock prices from the Alpha Vantage API, calculates financial metrics, and loads results into a TimescaleDB time-series database with a Streamlit dashboard.',
+    desc: 'Automated financial data pipeline from API ingestion to time-series storage.',
+    highlights: [
+      'Polls Alpha Vantage for OHLCV data; computes rolling MA and volatility metrics',
+      'Bulk-loads into TimescaleDB hypertables optimized for time-series queries',
+      'Containerized with Docker Compose; SQLAlchemy manages schema and ORM ops',
+    ],
     tech: ['Python', 'TimescaleDB', 'Streamlit', 'Docker', 'SQLAlchemy'],
     url: 'https://github.com/AndresL230/etl-pipeline',
   },
   {
     name: 'Portfolio Insights',
     award: null,
-    desc: 'Full-stack web app for tracking and analyzing stock portfolios with real-time performance metrics, interactive charts, sector allocation breakdowns, and AI-powered risk analysis.',
+    desc: 'Full-stack app for tracking and analyzing stock portfolios with AI risk analysis.',
+    highlights: [
+      'Flask API computes real-time P&L, returns, and sector allocation per holding',
+      'AI pass analyzes portfolio composition to surface concentration and volatility risks',
+      'React frontend renders interactive performance charts and allocation breakdowns',
+    ],
     tech: ['React', 'Flask', 'Python', 'Alpha Vantage API'],
     url: 'https://github.com/AndresL230/portfolio-insights',
   },
@@ -55,6 +80,13 @@ function ProjectCard({ project: p }) {
       </h3>
       {p.award && <span className="project-award">{p.award}</span>}
       <p className="project-desc">{p.desc}</p>
+      {p.highlights && (
+        <ul className="project-highlights">
+          {p.highlights.map((h) => (
+            <li key={h} className="project-highlight-item">{h}</li>
+          ))}
+        </ul>
+      )}
       <div className="project-tech">
         {p.tech.map((t) => (
           <span className="tech-tag" key={t}>{t}</span>

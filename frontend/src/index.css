@@ -323,8 +323,33 @@ section {
 .project-desc {
   font-size: 0.81rem;
   color: var(--muted);
-  line-height: 1.78;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.project-highlights {
+  list-style: none;
   margin-bottom: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.project-highlight-item {
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.55;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.project-highlight-item::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  opacity: 0.6;
+  font-weight: 700;
 }
 
 .project-tech {
