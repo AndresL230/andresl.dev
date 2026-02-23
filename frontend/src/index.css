@@ -263,7 +263,6 @@ section {
 }
 
 .about-text {
-  max-width: 580px;
   font-size: 0.93rem;
   line-height: 1.88;
   color: var(--muted);

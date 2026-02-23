@@ -1,10 +1,10 @@
 const skills = [
-  { category: 'Languages', tags: ['Python', 'JavaScript', 'TypeScript', 'Java'] },
-  { category: 'Frontend',  tags: ['React', 'HTML', 'CSS'] },
-  { category: 'Backend',   tags: ['Flask', 'Node.js'] },
-  { category: 'Data',      tags: ['SQL', 'pandas', 'NumPy', 'Streamlit', 'TimescaleDB'] },
-  { category: 'Tools',     tags: ['Docker', 'Git', 'SQLAlchemy'] },
-  { category: 'AI / ML',   tags: ['Hugging Face', 'OpenCV', 'NLP'] },
+  { category: 'Languages', tags: ['Python', 'JavaScript', 'TypeScript', 'Java', 'SQL'] },
+  { category: 'Frontend',  tags: ['React', 'Next.js', 'D3.js', 'Tailwind CSS', 'HTML', 'CSS'] },
+  { category: 'Backend',   tags: ['FastAPI', 'Flask', 'Node.js', 'REST APIs'] },
+  { category: 'Data',      tags: ['Pandas', 'NumPy', 'SQLite', 'Supabase', 'MySQL', 'Power BI'] },
+  { category: 'AI / ML',   tags: ['OpenAI', 'Google Gemini', 'YOLOv8', 'FAISS', 'OpenCV', 'PyTorch', 'Sentence Transformers', 'NLP'] },
+  { category: 'Tools',     tags: ['Git', 'Docker', 'WebRTC', 'Jupyter'] },
 ]
 
 function Skills() {

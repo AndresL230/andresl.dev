@@ -3,7 +3,7 @@ function Hero() {
     <section className="hero" id="hero">
       <div className="container">
         <div className="hero-content">
-          <p className="hero-eyebrow">sophomore · boston university</p>
+          <p className="hero-eyebrow">CS & Business · boston university</p>
 
           <h1 className="hero-name">
             Andres Lopez<span className="cursor" />
@@ -15,7 +15,7 @@ function Hero() {
             <strong>that solves real problems.</strong>
           </p>
 
-          <p className="hero-sub">CS, Business · engineer · builder · competitor.</p>
+          <p className="hero-sub">engineer · builder · competitor · tinkerer</p>
 
           <div className="hero-links">
             <a

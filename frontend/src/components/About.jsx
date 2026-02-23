@@ -7,16 +7,14 @@ function About() {
         <div className="about-text">
           <p>
             I&apos;m a sophomore at Boston University pursuing degrees in{' '}
-            <strong>Computer Science</strong> and <strong>Business</strong>. I sit at
-            the intersection of engineering and real world problems. I build real things, ship
-            fast, and think in systems. Whether it&apos;s an NLP pipeline or a financial
-            model, I care about how things actually work.
+            <strong>Computer Science</strong> and <strong>Business</strong>.  I like building things that sit at the intersection of engineering and real-world problems, whether that's an NLP pipeline, a data dashboard, or a financial model.
           </p>
           <p>
-            I&apos;ve competed at PennApps, HackHarvard, and the Capital One Tech Summit.
-            Outside class I&apos;m into <strong>data engineering</strong>,{' '}
-            <strong>backend development</strong>, and system infrastructure.
-            Most of my best work happens under a deadline.
+            I currently work as a software engineer at <strong>Hack4Impact</strong>, building backend systems and tools for local nonprofits.
+            I love competing at hackathons and have been to PennApps, HackHarvard, Civichacks, the Capital One Tech Summit, and a bunch of others.
+            There&apos;s something about building under pressure that brings out some of my best work.
+            Outside of class, I spend most of my time on <strong>data engineering</strong>,{' '}
+            <strong>backend systems</strong>, and whatever new AI tooling I can get my hands on.
           </p>
         </div>
       </div>
