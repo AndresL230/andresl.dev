@@ -1,5 +1,11 @@
+import { useState } from 'react'
+import ContactModal from './ContactModal'
+
 function Footer() {
+  const [contactOpen, setContactOpen] = useState(false)
+
   return (
+    <>
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-links">
@@ -27,16 +33,19 @@ function Footer() {
           >
             devpost
           </a>
-          <a
-            href="mailto:andreslopez.23061@gmail.com"
+          <button
             className="footer-link"
+            onClick={() => setContactOpen(true)}
           >
             email
-          </a>
+          </button>
         </div>
         <p className="footer-copy">© {new Date().getFullYear()} Andres Lopez</p>
       </div>
     </footer>
+
+    {contactOpen && <ContactModal onClose={() => setContactOpen(false)} />}
+    </>
   )
 }
 
