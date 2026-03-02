@@ -2,6 +2,23 @@ import { useState } from 'react'
 
 const projects = [
   {
+    name: 'EcoApi',
+    award: 'Best Web API (Stripe Track) — HackIllinois 2026',
+    desc: 'Developer tool that visualizes hidden API call costs and environmental footprint to drive optimization.',
+    img: '/images/ecoapi.png',
+    tech: ['Cloudflare Workers', 'Hono', 'D1', 'KV', 'React', 'Vite', 'TanStack Query', 'D3.js', 'TypeScript', 'Tailwind CSS', 'Llama 3.1'],
+    devpost: 'https://devpost.com/software/ecoapi',
+    live: 'https://ecoapi.dev',
+    problem: "Developers make costly API architecture mistakes without realizing it — redundant calls, N+1 patterns, and unchecked rate limits silently inflate cloud bills and carbon footprint with no visibility into the damage.",
+    solution: 'Built a three-part developer tool — a cloud API, interactive dashboard, and VSCode extension — that surfaces hidden API costs and environmental impact with real-time diagnostics, pattern detection, and AI-powered optimization suggestions.',
+    deepDive: [
+      'Cloudflare Workers REST API delivers cost breakdowns, rate-limit analysis, and N+1 pattern detection at the edge using Hono and D1',
+      'D3.js dependency graph and Recharts visualizations map endpoint relationships and cost distribution across a React dashboard',
+      'VSCode extension embeds a live analyzer that scans code for API patterns with AI chat explanations powered by Llama 3.1 8B',
+      'Sustainability metrics estimate electricity, water, and CO₂ footprint from API call volume to quantify environmental cost',
+    ],
+  },
+  {
     name: 'Sapling',
     award: 'Eduhack Track Winner — Civichacks 2026',
     desc: 'AI study framework with live knowledge graph visualization and adaptive quizzing.',
@@ -133,6 +150,11 @@ function ProjectRow({ project: p, open, onToggle }) {
                 {p.url && (
                   <a href={p.url} target="_blank" rel="noreferrer" className="proj-link">
                     GitHub ↗
+                  </a>
+                )}
+                {p.live && (
+                  <a href={p.live} target="_blank" rel="noreferrer" className="proj-link">
+                    Live ↗
                   </a>
                 )}
                 {p.devpost && (
