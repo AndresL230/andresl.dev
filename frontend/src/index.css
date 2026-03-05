@@ -848,6 +848,175 @@ button.footer-link {
   color: var(--muted);
 }
 
+/* ── FakeChat ───────────────────────────────────── */
+.fc-wrap {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.fc-fab {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.fc-fab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.fc-window {
+  width: 320px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  animation: cmIn 0.2s ease forwards;
+}
+
+.fc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.fc-title {
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+.fc-blink {
+  animation: blink 1.1s step-end infinite;
+}
+
+.fc-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+  font-family: inherit;
+  transition: color 0.15s ease;
+}
+
+.fc-close:hover { color: var(--text); }
+
+.fc-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  scrollbar-width: none;
+}
+
+.fc-msg {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+
+.fc-prefix {
+  color: var(--accent);
+  flex-shrink: 0;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.fc-msg--user {
+  color: var(--muted);
+}
+
+.fc-msg--bot {
+  color: var(--text);
+}
+
+.fc-messages::-webkit-scrollbar { display: none; }
+
+.fc-dots span {
+  animation: blink 1.2s step-end infinite;
+}
+.fc-dots span:nth-child(2) { animation-delay: 0.2s; }
+.fc-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+.fc-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.85rem;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.fc-input-prefix {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.fc-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.8rem;
+  min-width: 0;
+}
+
+.fc-input::placeholder { color: var(--muted); }
+
+.fc-send {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.fc-send:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.fc-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+@media (max-width: 400px) {
+  .fc-window { width: calc(100vw - 3rem); }
+}
+
 /* ── Responsive ─────────────────────────────────── */
 @media (max-width: 768px) {
   section {
