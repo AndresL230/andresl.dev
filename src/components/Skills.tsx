@@ -1,4 +1,9 @@
-const skills = [
+type SkillGroup = {
+  category: string
+  tags: string[]
+}
+
+const skills: SkillGroup[] = [
   { category: 'Languages', tags: ['Python', 'JavaScript', 'TypeScript', 'Java', 'SQL'] },
   { category: 'Frontend',  tags: ['React', 'Next.js', 'D3.js', 'Tailwind CSS', 'HTML', 'CSS'] },
   { category: 'Backend',   tags: ['FastAPI', 'Flask', 'Node.js', 'REST APIs'] },

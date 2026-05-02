@@ -2,11 +2,25 @@ import { useState, useEffect, useCallback } from 'react'
 
 const ENDPOINT = 'https://formspree.io/f/xnjborqw'
 
-function ContactModal({ onClose }) {
+type ContactModalProps = {
+  onClose: () => void
+}
+
+type Fields = {
+  name: string
+  email: string
+  message: string
+}
+
+type FieldErrors = Partial<Record<keyof Fields, string>>
+
+type Status = 'idle' | 'loading' | 'success' | 'error'
+
+function ContactModal({ onClose }: ContactModalProps) {
   const [closing, setClosing] = useState(false)
-  const [fields, setFields] = useState({ name: '', email: '', message: '' })
-  const [errors, setErrors] = useState({})
-  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [fields, setFields] = useState<Fields>({ name: '', email: '', message: '' })
+  const [errors, setErrors] = useState<FieldErrors>({})
+  const [status, setStatus] = useState<Status>('idle')
 
   const close = useCallback(() => {
     setClosing(true)
@@ -14,7 +28,7 @@ function ContactModal({ onClose }) {
   }, [onClose])
 
   useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') close() }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') close() }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
     return () => {
@@ -23,8 +37,8 @@ function ContactModal({ onClose }) {
     }
   }, [close])
 
-  function validate() {
-    const e = {}
+  function validate(): FieldErrors {
+    const e: FieldErrors = {}
     if (!fields.name.trim()) e.name = 'Required'
     if (!fields.email.trim()) e.email = 'Required'
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) e.email = 'Invalid email'
@@ -32,7 +46,7 @@ function ContactModal({ onClose }) {
     return e
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length) { setErrors(errs); return }
@@ -55,8 +69,8 @@ function ContactModal({ onClose }) {
     }
   }
 
-  function set(field) {
-    return (e) => {
+  function set(field: keyof Fields) {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setFields((f) => ({ ...f, [field]: e.target.value }))
       if (errors[field]) setErrors((err) => ({ ...err, [field]: undefined }))
     }

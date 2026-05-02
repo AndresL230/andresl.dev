@@ -1,6 +1,20 @@
 import { useState } from 'react'
 
-const projects = [
+type Project = {
+  name: string
+  award: string | null
+  desc: string
+  img?: string
+  tech: string[]
+  url?: string
+  live?: string
+  devpost?: string
+  problem: string
+  solution: string
+  deepDive: string[]
+}
+
+const projects: Project[] = [
   {
     name: 'EcoApi',
     award: 'Best Web API (Stripe Track) — HackIllinois 2026',
@@ -69,7 +83,7 @@ const projects = [
       'Cloudflare Workers handle edge processing for near-zero latency on live streams',
     ],
   },
-  
+
   {
     name: 'ETL Pipeline',
     award: null,
@@ -102,7 +116,13 @@ const projects = [
   },
 ]
 
-function ProjectRow({ project: p, open, onToggle }) {
+type ProjectRowProps = {
+  project: Project
+  open: boolean
+  onToggle: () => void
+}
+
+function ProjectRow({ project: p, open, onToggle }: ProjectRowProps) {
   return (
     <div className={`proj-row${open ? ' proj-row--open' : ''}`}>
       <button className="proj-summary" onClick={onToggle}>
@@ -172,7 +192,7 @@ function ProjectRow({ project: p, open, onToggle }) {
 }
 
 function Projects() {
-  const [openName, setOpenName] = useState(null)
+  const [openName, setOpenName] = useState<string | null>(null)
 
   return (
     <section className="projects" id="projects">

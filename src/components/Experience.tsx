@@ -1,4 +1,11 @@
-const experience = [
+type ExperienceItem = {
+  role: string
+  company: string
+  date: string
+  desc: string
+}
+
+const experience: ExperienceItem[] = [
   {
     role: 'Software Engineer · Part-time',
     company: 'Hack4Impact BU',
