@@ -19,7 +19,7 @@ andresl.dev/            # Vite + React + TypeScript app (the entire site)
 │       ├── Footer.tsx
 │       └── ContactModal.tsx
 └── public/
-    └── images/         # Project preview images (e.g. sapling.png, ecoapi.png)
+    └── images/         # Project preview images (e.g. sapling.png, recost.png)
 ```
 
 ## Dev Commands

@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { X, PaperPlaneTilt } from '@phosphor-icons/react'
 
 const ENDPOINT = 'https://formspree.io/f/xnjborqw'
 
@@ -13,18 +15,17 @@ type Fields = {
 }
 
 type FieldErrors = Partial<Record<keyof Fields, string>>
-
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
 function ContactModal({ onClose }: ContactModalProps) {
-  const [closing, setClosing] = useState(false)
   const [fields, setFields] = useState<Fields>({ name: '', email: '', message: '' })
   const [errors, setErrors] = useState<FieldErrors>({})
   const [status, setStatus] = useState<Status>('idle')
+  const [visible, setVisible] = useState(true)
 
   const close = useCallback(() => {
-    setClosing(true)
-    setTimeout(onClose, 220)
+    setVisible(false)
+    setTimeout(onClose, 240)
   }, [onClose])
 
   useEffect(() => {
@@ -39,10 +40,10 @@ function ContactModal({ onClose }: ContactModalProps) {
 
   function validate(): FieldErrors {
     const e: FieldErrors = {}
-    if (!fields.name.trim()) e.name = 'Required'
-    if (!fields.email.trim()) e.email = 'Required'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) e.email = 'Invalid email'
-    if (!fields.message.trim()) e.message = 'Required'
+    if (!fields.name.trim()) e.name = 'required'
+    if (!fields.email.trim()) e.email = 'required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) e.email = 'invalid email'
+    if (!fields.message.trim()) e.message = 'required'
     return e
   }
 
@@ -77,69 +78,118 @@ function ContactModal({ onClose }: ContactModalProps) {
   }
 
   return (
-    <div
-      className={`cm-backdrop${closing ? ' cm-backdrop--out' : ''}`}
-      onClick={close}
-    >
-      <div
-        className={`cm${closing ? ' cm--out' : ''}`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className="cm-close" onClick={close} aria-label="Close">✕</button>
-
-        <p className="cm-tag">contact</p>
-        <h2 className="cm-title">Get in touch.</h2>
-
-        {status === 'success' ? (
-          <p className="cm-success">Message sent. I&apos;ll get back to you soon.</p>
-        ) : (
-          <form className="cm-form" onSubmit={handleSubmit} noValidate>
-            <div className="cm-field">
-              <input
-                className={`cm-input${errors.name ? ' cm-input--err' : ''}`}
-                type="text"
-                placeholder="name"
-                value={fields.name}
-                onChange={set('name')}
-                autoComplete="name"
-              />
-              {errors.name && <span className="cm-err">{errors.name}</span>}
-            </div>
-
-            <div className="cm-field">
-              <input
-                className={`cm-input${errors.email ? ' cm-input--err' : ''}`}
-                type="email"
-                placeholder="email"
-                value={fields.email}
-                onChange={set('email')}
-                autoComplete="email"
-              />
-              {errors.email && <span className="cm-err">{errors.email}</span>}
-            </div>
-
-            <div className="cm-field">
-              <textarea
-                className={`cm-input cm-textarea${errors.message ? ' cm-input--err' : ''}`}
-                placeholder="message"
-                value={fields.message}
-                onChange={set('message')}
-                rows={5}
-              />
-              {errors.message && <span className="cm-err">{errors.message}</span>}
-            </div>
-
-            {status === 'error' && (
-              <p className="cm-err cm-err--global">Something went wrong. Please try again.</p>
-            )}
-
-            <button className="cm-submit" type="submit" disabled={status === 'loading'}>
-              {status === 'loading' ? 'sending...' : 'send message'}
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.22 }}
+          onClick={close}
+          className="fixed inset-0 z-[300] flex items-center justify-center p-4 md:p-6 bg-black/70 backdrop-blur-md"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 18, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 18, scale: 0.97 }}
+            transition={{ type: 'spring', stiffness: 220, damping: 22 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-[520px] glass rounded-[2px] p-7 md:p-9"
+          >
+            <button
+              onClick={close}
+              aria-label="Close"
+              className="absolute top-4 right-4 w-9 h-9 inline-flex items-center justify-center text-muted hover:text-accent border border-line hover:border-accent transition-colors"
+            >
+              <X size={14} weight="bold" />
             </button>
-          </form>
-        )}
-      </div>
-    </div>
+
+            <span className="font-mono text-[0.66rem] uppercase tracking-[0.2em] text-accent">
+              <span className="text-muted-2 mr-1">/</span>contact
+            </span>
+            <h3 className="mt-2 font-display font-medium text-text text-[1.7rem] md:text-[1.95rem] tracking-[-0.025em] leading-[1.05]">
+              Drop me a line<span className="text-accent">.</span>
+            </h3>
+
+            {status === 'success' ? (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 p-5 border border-accent/30 bg-accent/5"
+              >
+                <p className="font-mono text-[0.86rem] text-accent">
+                  message sent → I&apos;ll get back to you soon.
+                </p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} noValidate className="mt-7 flex flex-col gap-5">
+                <Field label="name" error={errors.name}>
+                  <input
+                    type="text"
+                    autoComplete="name"
+                    value={fields.name}
+                    onChange={set('name')}
+                    className={inputClass(!!errors.name)}
+                  />
+                </Field>
+
+                <Field label="email" error={errors.email}>
+                  <input
+                    type="email"
+                    autoComplete="email"
+                    value={fields.email}
+                    onChange={set('email')}
+                    className={inputClass(!!errors.email)}
+                  />
+                </Field>
+
+                <Field label="message" error={errors.message}>
+                  <textarea
+                    rows={5}
+                    value={fields.message}
+                    onChange={set('message')}
+                    className={`${inputClass(!!errors.message)} resize-none min-h-[120px]`}
+                  />
+                </Field>
+
+                {status === 'error' && (
+                  <p className="font-mono text-[0.74rem] text-[#e76b6b]">
+                    something went wrong. try again?
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="self-start mt-2 inline-flex items-center gap-2 bg-accent text-accent-ink font-mono text-[0.74rem] tracking-[0.08em] uppercase px-5 py-3 hover:bg-accent/85 active:translate-y-[1px] transition-all disabled:opacity-50"
+                >
+                  {status === 'loading' ? 'sending…' : 'send message'}
+                  <PaperPlaneTilt size={13} weight="fill" />
+                </button>
+              </form>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
+function inputClass(err: boolean) {
+  return `w-full bg-transparent border-b ${err ? 'border-[#e76b6b]' : 'border-line-strong'} focus:border-accent text-text font-mono text-[0.92rem] px-0 py-2.5 outline-none transition-colors placeholder:text-muted`
+}
+
+function Field({
+  label, error, children,
+}: { label: string; error?: string; children: React.ReactNode }) {
+  return (
+    <label className="flex flex-col gap-1.5">
+      <span className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-muted flex items-center justify-between">
+        <span>{label}</span>
+        {error && <span className="text-[#e76b6b] normal-case tracking-normal">{error}</span>}
+      </span>
+      {children}
+    </label>
   )
 }
 

@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" font-family="'JetBrains Mono', ui-monospace, Menlo, monospace" fill="none">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c1814"/>
+    </marker>
+    <marker id="arrAcc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dd5a22"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1c1814" stroke-width="0.5" opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <!-- background + grid -->
+  <rect width="1600" height="1100" fill="#f4f2ec"/>
+  <rect width="1600" height="1100" fill="url(#grid)"/>
+
+  <!-- header strip -->
+  <g fill="#1c1814">
+    <text x="80" y="78" font-size="20" letter-spacing="3" font-weight="500">ETL-PIPELINE  ·  SYSTEM ARCHITECTURE</text>
+    <text x="80" y="104" font-size="13" letter-spacing="2" opacity="0.55">alpha vantage → pandas transforms → timescaledb hypertable → fastapi · streamlit</text>
+    <text x="1520" y="78" font-size="14" letter-spacing="3" fill="#dd5a22" text-anchor="end" font-weight="500">FIG. 00 / DATA FLOW</text>
+    <text x="1520" y="104" font-size="11" letter-spacing="2" text-anchor="end" opacity="0.55">github · AndresL230/etl-pipeline</text>
+  </g>
+  <line x1="80" y1="124" x2="1520" y2="124" stroke="#1c1814" opacity="0.18"/>
+
+  <!-- column labels -->
+  <g font-size="10" letter-spacing="3" fill="#8c867b" font-weight="500">
+    <text x="100" y="160">/ EXTRACT · TRANSFORM · LOAD</text>
+    <text x="660" y="160">/ STORAGE</text>
+    <text x="1180" y="160">/ CONSUMERS</text>
+  </g>
+
+  <!-- ============== LEFT SPINE: ETL stages ============== -->
+
+  <!-- Stage 00: Alpha Vantage -->
+  <g>
+    <rect x="100" y="190" width="460" height="100" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="100" y="190" width="50" height="22" fill="#dd5a22"/>
+    <text x="125" y="206" font-size="11" letter-spacing="2" fill="#fdfcf7" text-anchor="middle" font-weight="600">00</text>
+    <text x="540" y="206" font-size="9" letter-spacing="2" fill="#8c867b" text-anchor="end">/external</text>
+    <text x="120" y="240" font-size="22" letter-spacing="1" fill="#1c1814" font-weight="500">ALPHA VANTAGE</text>
+    <text x="120" y="270" font-size="12" fill="#4f4a44">TIME_SERIES_DAILY  ·  ohlcv + dividends + splits</text>
+  </g>
+
+  <!-- arrow 00 → 01 -->
+  <line x1="330" y1="290" x2="330" y2="338" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+  <text x="345" y="318" font-size="10" letter-spacing="1" fill="#8c867b">HTTP · 25 req/day · free tier</text>
+
+  <!-- Stage 01: Extractor -->
+  <g>
+    <rect x="100" y="345" width="460" height="120" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="100" y="345" width="50" height="22" fill="#dd5a22"/>
+    <text x="125" y="361" font-size="11" letter-spacing="2" fill="#fdfcf7" text-anchor="middle" font-weight="600">01</text>
+    <text x="540" y="361" font-size="9" letter-spacing="2" fill="#8c867b" text-anchor="end">src/extractors/yahoo_finance.py</text>
+    <text x="120" y="395" font-size="20" letter-spacing="0.5" fill="#1c1814" font-weight="500">AlphaVantage_Extractor</text>
+    <text x="120" y="421" font-size="11" fill="#4f4a44">rate-limit · 1.2s per symbol</text>
+    <text x="120" y="441" font-size="11" fill="#4f4a44">symbols · AAPL · GOOGL · MSFT  <tspan fill="#8c867b">(configurable via env)</tspan></text>
+  </g>
+
+  <!-- arrow 01 → 02 -->
+  <line x1="330" y1="465" x2="330" y2="513" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+  <text x="345" y="493" font-size="10" letter-spacing="1" fill="#8c867b">pandas.DataFrame</text>
+
+  <!-- Stage 02: Transform (tall, with indicator list) -->
+  <g>
+    <rect x="100" y="520" width="460" height="280" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="100" y="520" width="50" height="22" fill="#dd5a22"/>
+    <text x="125" y="536" font-size="11" letter-spacing="2" fill="#fdfcf7" text-anchor="middle" font-weight="600">02</text>
+    <text x="540" y="536" font-size="9" letter-spacing="2" fill="#8c867b" text-anchor="end">src/transformers/financial_metrics.py</text>
+    <text x="120" y="570" font-size="20" letter-spacing="0.5" fill="#1c1814" font-weight="500">apply_transformations()</text>
+    <text x="120" y="592" font-size="11" fill="#4f4a44">groupby(symbol).rolling / .ewm</text>
+
+    <!-- indicators list -->
+    <g font-size="11.5" fill="#4f4a44">
+      <line x1="120" y1="608" x2="540" y2="608" stroke="#1c1814" opacity="0.12"/>
+
+      <text x="120" y="630"><tspan fill="#dd5a22" font-weight="600">→</tspan>  daily_returns</text>
+      <text x="370" y="630" fill="#8c867b">pct_change · base</text>
+
+      <text x="120" y="652"><tspan fill="#dd5a22" font-weight="600">→</tspan>  sma</text>
+      <text x="370" y="652" fill="#8c867b">windows · 7 / 20 / 50</text>
+
+      <text x="120" y="674"><tspan fill="#dd5a22" font-weight="600">→</tspan>  ema</text>
+      <text x="370" y="674" fill="#8c867b">windows · 12 / 26</text>
+
+      <text x="120" y="696"><tspan fill="#dd5a22" font-weight="600">→</tspan>  rsi</text>
+      <text x="370" y="696" fill="#8c867b">window · 14</text>
+
+      <text x="120" y="718"><tspan fill="#dd5a22" font-weight="600">→</tspan>  bollinger</text>
+      <text x="370" y="718" fill="#8c867b">w · 20  ·  ±2σ</text>
+
+      <text x="120" y="740"><tspan fill="#dd5a22" font-weight="600">→</tspan>  macd</text>
+      <text x="370" y="740" fill="#8c867b">12 / 26 / 9</text>
+
+      <text x="120" y="762"><tspan fill="#dd5a22" font-weight="600">→</tspan>  volatility</text>
+      <text x="370" y="762" fill="#8c867b">σ rolling · w 20</text>
+
+      <text x="120" y="784" fill="#8c867b" font-size="10">tested via scripts/run_transform_check.py · 18 pytest cases</text>
+    </g>
+  </g>
+
+  <!-- arrow 02 → 03 -->
+  <line x1="330" y1="800" x2="330" y2="848" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+  <text x="345" y="828" font-size="10" letter-spacing="1" fill="#8c867b">enriched DataFrame</text>
+
+  <!-- Stage 03: Loader -->
+  <g>
+    <rect x="100" y="855" width="460" height="100" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="100" y="855" width="50" height="22" fill="#dd5a22"/>
+    <text x="125" y="871" font-size="11" letter-spacing="2" fill="#fdfcf7" text-anchor="middle" font-weight="600">03</text>
+    <text x="540" y="871" font-size="9" letter-spacing="2" fill="#8c867b" text-anchor="end">src/loaders/database.py</text>
+    <text x="120" y="905" font-size="20" letter-spacing="0.5" fill="#1c1814" font-weight="500">run_etl()</text>
+    <text x="120" y="935" font-size="11" fill="#4f4a44">orchestrates · extract → transform → load · logs every run</text>
+  </g>
+
+  <!-- arrow 03 → DB (horizontal into center column) -->
+  <line x1="560" y1="905" x2="678" y2="905" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+  <text x="619" y="895" font-size="10" letter-spacing="1" fill="#8c867b" text-anchor="middle">COPY</text>
+
+  <!-- ============== CENTER: TimescaleDB block ============== -->
+  <g>
+    <!-- outer hypertable container -->
+    <rect x="685" y="190" width="395" height="765" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="685" y="190" width="395" height="50" fill="#1c1814"/>
+    <text x="705" y="222" font-size="13" letter-spacing="2" fill="#fdfcf7" font-weight="600">TIMESCALEDB  ·  postgres :5432</text>
+    <text x="1060" y="222" font-size="9" letter-spacing="2" fill="#fdfcf7" opacity="0.55" text-anchor="end">docker</text>
+
+    <!-- stock_prices block -->
+    <g>
+      <rect x="715" y="280" width="335" height="240" stroke="#1c1814"/>
+      <text x="730" y="306" font-size="10" letter-spacing="2" fill="#8c867b">// HYPERTABLE</text>
+      <text x="730" y="332" font-size="18" fill="#1c1814" font-weight="500">stock_prices</text>
+      <line x1="715" y1="350" x2="1050" y2="350" stroke="#1c1814" opacity="0.18"/>
+
+      <g font-size="11" fill="#4f4a44">
+        <text x="730" y="372">id</text>
+        <text x="900" y="372" fill="#8c867b">SERIAL  PK</text>
+        <text x="730" y="392" fill="#dd5a22" font-weight="600">timestamp</text>
+        <text x="900" y="392" fill="#8c867b">TIMESTAMPTZ · part. key</text>
+        <text x="730" y="412">symbol</text>
+        <text x="900" y="412" fill="#8c867b">VARCHAR(10)</text>
+        <text x="730" y="432">open / high / low / close</text>
+        <text x="900" y="432" fill="#8c867b">DECIMAL</text>
+        <text x="730" y="452">volume</text>
+        <text x="900" y="452" fill="#8c867b">BIGINT</text>
+        <text x="730" y="472">dividends · stock_splits</text>
+        <text x="900" y="472" fill="#8c867b">DECIMAL</text>
+      </g>
+      <line x1="715" y1="488" x2="1050" y2="488" stroke="#1c1814" opacity="0.18"/>
+      <text x="730" y="508" font-size="10" letter-spacing="1" fill="#8c867b">idx · (symbol, timestamp DESC) · (timestamp DESC)</text>
+    </g>
+
+    <!-- etl_runs block -->
+    <g>
+      <rect x="715" y="545" width="335" height="120" stroke="#1c1814"/>
+      <text x="730" y="571" font-size="10" letter-spacing="2" fill="#8c867b">// AUDIT LOG</text>
+      <text x="730" y="597" font-size="18" fill="#1c1814" font-weight="500">etl_runs</text>
+      <line x1="715" y1="615" x2="1050" y2="615" stroke="#1c1814" opacity="0.18"/>
+      <text x="730" y="637" font-size="11" fill="#4f4a44">run_at · symbols · rows · duration · status</text>
+      <text x="730" y="655" font-size="10" letter-spacing="1" fill="#8c867b">populated by run_etl() on every invocation</text>
+    </g>
+
+    <!-- latest_prices view -->
+    <g>
+      <rect x="715" y="690" width="335" height="80" stroke="#1c1814" stroke-dasharray="3 3"/>
+      <text x="730" y="716" font-size="10" letter-spacing="2" fill="#8c867b">// VIEW</text>
+      <text x="730" y="742" font-size="16" fill="#1c1814" font-weight="500">latest_prices</text>
+      <text x="730" y="762" font-size="10" letter-spacing="1" fill="#8c867b">DISTINCT ON (symbol)  ORDER BY timestamp DESC</text>
+    </g>
+
+    <!-- footer info -->
+    <g font-size="10" fill="#8c867b" letter-spacing="1">
+      <text x="715" y="800">image · timescale/timescaledb:latest-pg14</text>
+      <text x="715" y="818">init · init.sql  ·  volume · postgres_data</text>
+      <text x="715" y="836">python-dotenv · DB_HOST · DB_PORT · DB_NAME · DB_USER</text>
+    </g>
+
+    <!-- branch outputs from DB -->
+    <line x1="1080" y1="430" x2="1175" y2="430" stroke="#1c1814" stroke-width="1" marker-end="url(#arr)"/>
+    <text x="1100" y="420" font-size="9" letter-spacing="1" fill="#8c867b">SELECT</text>
+    <line x1="1080" y1="700" x2="1175" y2="700" stroke="#1c1814" stroke-width="1" marker-end="url(#arr)"/>
+    <text x="1100" y="690" font-size="9" letter-spacing="1" fill="#8c867b">SELECT</text>
+  </g>
+
+  <!-- ============== RIGHT: Consumers ============== -->
+
+  <!-- FastAPI -->
+  <g>
+    <rect x="1180" y="350" width="340" height="200" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="1180" y="350" width="50" height="22" fill="#dd5a22"/>
+    <text x="1205" y="366" font-size="11" letter-spacing="2" fill="#fdfcf7" text-anchor="middle" font-weight="600">04</text>
+    <text x="1500" y="366" font-size="9" letter-spacing="2" fill="#8c867b" text-anchor="end">src/api/app.py</text>
+    <text x="1200" y="400" font-size="20" letter-spacing="0.5" fill="#1c1814" font-weight="500">FastAPI</text>
+    <text x="1500" y="400" font-size="14" fill="#dd5a22" letter-spacing="1" text-anchor="end">:8000</text>
+    <line x1="1200" y1="416" x2="1500" y2="416" stroke="#1c1814" opacity="0.12"/>
+
+    <g font-size="11" fill="#4f4a44">
+      <text x="1200" y="436"><tspan fill="#dd5a22">GET</tspan>  /health</text>
+      <text x="1200" y="454"><tspan fill="#dd5a22">GET</tspan>  /api/v1/prices</text>
+      <text x="1200" y="472"><tspan fill="#dd5a22">GET</tspan>  /api/v1/prices/advanced</text>
+      <text x="1200" y="490"><tspan fill="#dd5a22">GET</tspan>  /api/v1/symbols</text>
+      <text x="1200" y="508"><tspan fill="#dd5a22">GET</tspan>  /api/v1/symbols/&#123;symbol&#125;/summary</text>
+      <text x="1200" y="526"><tspan fill="#dd5a22">GET</tspan>  /api/v1/indicators/&#123;sym&#125;/&#123;ind&#125;</text>
+    </g>
+  </g>
+
+  <!-- Streamlit -->
+  <g>
+    <rect x="1180" y="620" width="340" height="180" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="1180" y="620" width="50" height="22" fill="#dd5a22"/>
+    <text x="1205" y="636" font-size="11" letter-spacing="2" fill="#fdfcf7" text-anchor="middle" font-weight="600">05</text>
+    <text x="1500" y="636" font-size="9" letter-spacing="2" fill="#8c867b" text-anchor="end">dashboard/app.py</text>
+    <text x="1200" y="670" font-size="20" letter-spacing="0.5" fill="#1c1814" font-weight="500">Streamlit</text>
+    <text x="1500" y="670" font-size="14" fill="#dd5a22" letter-spacing="1" text-anchor="end">:8501</text>
+    <line x1="1200" y1="686" x2="1500" y2="686" stroke="#1c1814" opacity="0.12"/>
+
+    <g font-size="11" fill="#4f4a44">
+      <text x="1200" y="708">tab · ETL Statistics</text>
+      <text x="1220" y="726" fill="#8c867b" font-size="10">runs · success rate · rows · duration · log</text>
+      <text x="1200" y="752">tab · Data Table</text>
+      <text x="1220" y="770" fill="#8c867b" font-size="10">browse stock_prices · symbol + date filters</text>
+    </g>
+    <text x="1200" y="790" font-size="10" letter-spacing="1" fill="#8c867b">cache TTL · 30s</text>
+  </g>
+
+  <!-- ============== SIDECAR: MetricsCollector ============== -->
+  <g>
+    <rect x="100" y="1000" width="1420" height="60" stroke="#1c1814" stroke-dasharray="3 3"/>
+    <text x="120" y="1024" font-size="11" letter-spacing="2" fill="#dd5a22" font-weight="600">// SIDECAR</text>
+    <text x="220" y="1024" font-size="14" fill="#1c1814" font-weight="500">MetricsCollector</text>
+    <text x="385" y="1024" font-size="11" fill="#8c867b">tracks · extraction · transformation · load</text>
+    <text x="120" y="1046" font-size="10" letter-spacing="1" fill="#8c867b">src/monitoring/metrics.py  ·  symbols · records · API response time · null counts · DB connection time  →  save_to_json()</text>
+  </g>
+
+  <!-- corner registration marks -->
+  <g stroke="#1c1814" stroke-width="1">
+    <line x1="40" y1="40" x2="60" y2="40"/>
+    <line x1="40" y1="40" x2="40" y2="60"/>
+    <line x1="1540" y1="40" x2="1560" y2="40"/>
+    <line x1="1560" y1="40" x2="1560" y2="60"/>
+    <line x1="40" y1="1060" x2="60" y2="1060"/>
+    <line x1="40" y1="1040" x2="40" y2="1060"/>
+    <line x1="1540" y1="1060" x2="1560" y2="1060"/>
+    <line x1="1560" y1="1040" x2="1560" y2="1060"/>
+  </g>
+</svg>
