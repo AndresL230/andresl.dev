@@ -74,16 +74,17 @@ const experience: ExperienceItem[] = [
 
 function Experience() {
   return (
-    <section id="experience" className="relative py-28 md:py-44 border-t border-line overflow-hidden">
+    <section className="relative py-28 md:py-44 border-t border-line overflow-hidden">
       <div className="mx-auto max-w-[1240px] px-6 md:px-10">
         <motion.div
+          id="experience"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
           className="flex items-center gap-3 mb-14"
         >
-          <span className="font-mono text-accent text-[0.7rem] tracking-[0.22em] uppercase">02</span>
+          <span className="font-mono text-accent text-[0.7rem] tracking-[0.22em] uppercase">03</span>
           <span className="w-8 h-px bg-line-strong" />
           <span className="font-mono text-[0.66rem] tracking-[0.2em] uppercase text-muted">experience</span>
         </motion.div>
@@ -105,7 +106,7 @@ function Experience() {
           transition={{ duration: 0.65, delay: 0.06, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-text-dim text-[1.05rem] leading-[1.7] max-w-[620px] mb-24 md:mb-32"
         >
-          A working résumé in chapters, not bullet points.
+          A working resume in chapters, not bullet points.
         </motion.p>
 
         <div className="flex flex-col gap-32 md:gap-48">

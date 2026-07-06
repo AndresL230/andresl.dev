@@ -14,13 +14,14 @@ function SelectedWork() {
     <section className="relative py-28 md:py-44 border-t border-line">
       <div className="mx-auto max-w-[1240px] px-6 md:px-10">
         <motion.div
+          id="building"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
           className="flex items-center gap-3 mb-14"
         >
-          <span className="font-mono text-accent text-[0.7rem] tracking-[0.22em] uppercase">04</span>
+          <span className="font-mono text-accent text-[0.7rem] tracking-[0.22em] uppercase">02</span>
           <span className="w-8 h-px bg-line-strong" />
           <span className="font-mono text-[0.66rem] tracking-[0.2em] uppercase text-muted">now building</span>
         </motion.div>
@@ -111,7 +112,6 @@ function FeatureCard({ project: p, index }: { project: Project; index: number })
               loading="lazy"
             />
           )}
-          <div className="absolute inset-0 ring-1 ring-inset ring-white/5 pointer-events-none" />
         </div>
       </Link>
 

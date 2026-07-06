@@ -1,10 +1,21 @@
 import { motion } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'
+
+const hackathons = [
+  { event: 'PennApps XXVI', award: 'Best Design', project: 'noogie', slug: 'noogie' },
+  { event: "HackHarvard '25", award: 'Best Use of Cloudflare', project: 'Eyrie', slug: 'eyrie' },
+  { event: 'HackIllinois 2026', award: "Stripe's Best Web API", project: 'Recost', slug: 'recost' },
+  { event: "CivicHacks BU '26", award: 'the AI Tutor track', project: 'Sapling', slug: 'sapling' },
+  { event: 'LA Hacks 2026', award: null, project: 'Calyx', slug: 'calyx' },
+]
 
 function About() {
+  const location = useLocation()
   return (
-    <section id="about" className="relative py-28 md:py-44 border-t border-line">
+    <section className="relative py-28 md:py-44 border-t border-line">
       <div className="mx-auto max-w-[1240px] px-6 md:px-10">
         <motion.div
+          id="about"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -37,13 +48,11 @@ function About() {
               <span className="text-accent">/</span> the work
             </span>
             <p className="md:col-span-9 text-[1.05rem] md:text-[1.15rem] leading-[1.8] text-text-dim max-w-[680px]">
-              Right now I&apos;m building <span className="text-text">Recost</span>, an API
-              cost intelligence platform on Cloudflare Workers. Python and Node SDKs hook
-              your outbound HTTP calls, a VS Code extension reads your code statically for
-              cost patterns, and an MCP server hands the whole thing to AI agents. The rest
-              of the week goes to backend at <span className="text-text">Hack4Impact BU</span>,
-              an <span className="text-text">ML Foundations fellowship</span> at Cornell Tech
-              through Break Through Tech, and whatever new tool I can break in a weekend.
+              Right now I&apos;m building <span className="text-text">Recost</span> — API
+              cost intelligence on Cloudflare Workers, from SDK hooks to a VS Code extension
+              to an MCP server. The rest of the week goes to backend at{' '}
+              <span className="text-text">Hack4Impact BU</span> and whatever new tool I can
+              break in a weekend.
             </p>
           </div>
 
@@ -51,15 +60,30 @@ function About() {
             <span className="md:col-span-3 font-mono text-[0.66rem] uppercase tracking-[0.22em] text-muted pt-2">
               <span className="text-accent">/</span> the hackathons
             </span>
-            <p className="md:col-span-9 text-[1.05rem] md:text-[1.15rem] leading-[1.8] text-text-dim max-w-[680px]">
-              Four wins so far: <span className="text-text">PennApps XXVI</span> (Best
-              Design), <span className="text-text">HackHarvard &apos;25</span> (Best Use of
-              Cloudflare), <span className="text-text">HackIllinois 2026</span> (Stripe Best
-              Web API), and <span className="text-text">CivicHacks BU &apos;26</span> (AI
-              Tutor Track). Most recently I shipped <span className="text-text">Calyx</span>
-              {' '}at LA Hacks 2026. Something about a 36-hour clock and three strangers in a
-              basement out of coffee brings out the best work.
-            </p>
+            <ul className="md:col-span-9 max-w-[680px] text-[1.05rem] md:text-[1.15rem] leading-[1.8] text-text-dim">
+              {hackathons.map((h) => (
+                <li key={h.slug} className="flex gap-3">
+                  <span className="text-muted-2 select-none" aria-hidden="true">—</span>
+                  <span>
+                    Built{' '}
+                    <Link
+                      to={`/work/${h.slug}`}
+                      state={{ background: location }}
+                      className="text-accent border-b border-accent/40 hover:text-text hover:border-line-strong transition-colors"
+                    >
+                      {h.project}
+                    </Link>{' '}
+                    at {h.event}
+                    {h.award && (
+                      <>
+                        {' '}&mdash; and won <span className="text-text">{h.award}</span>
+                      </>
+                    )}
+                    .
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="mt-12 grid md:grid-cols-12 gap-y-8 md:gap-x-12 items-start">
@@ -70,9 +94,7 @@ function About() {
               <span className="text-text">Eagle Scout</span>, Dean&apos;s List,{' '}
               <span className="text-text">HSF Scholar</span>,{' '}
               <span className="text-text">MLT Career Prep</span>, SEO Edge, plus an AI/ML
-              fellowship at Cornell Tech through Break Through Tech. Outside the editor:
-              fragrance, cooking, music, gaming, and the occasional argument about whether
-              type systems are worth it (they are).
+              fellowship at Cornell Tech through Break Through Tech.
             </p>
           </div>
         </motion.div>

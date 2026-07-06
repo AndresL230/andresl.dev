@@ -26,8 +26,8 @@ export default function Work() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] as const }}
-          className="font-display font-medium tracking-[-0.04em] leading-[0.92] text-text text-balance max-w-[1080px]"
-          style={{ fontSize: 'clamp(3rem, 9vw, 7rem)' }}
+          className="font-display font-medium tracking-[-0.025em] leading-[1.1] text-text text-balance max-w-[1080px]"
+          style={{ fontSize: 'clamp(1.2rem, 3vw, 2.35rem)' }}
         >
           Every project here started because something didn&apos;t exist yet<span className="text-accent">.</span>
         </motion.h1>
@@ -67,7 +67,6 @@ export default function Work() {
                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.025] transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-bg/50 to-transparent opacity-60" />
-                      <div className="absolute inset-0 ring-1 ring-inset ring-white/5" />
                     </>
                   ) : (
                     <div className="absolute inset-0 bg-surface flex items-center justify-center px-8 md:px-14">
