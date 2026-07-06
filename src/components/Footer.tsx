@@ -13,12 +13,6 @@ function Footer({ hidden = false }: { hidden?: boolean }) {
       <footer id="contact" className="relative border-t border-line bg-bg overflow-hidden">
         <div className="mx-auto max-w-[1240px] px-6 md:px-10 pt-24 md:pt-32 pb-12">
           <div className="mb-16 md:mb-24">
-            <div className="flex items-center gap-3 mb-10">
-              <span className="font-mono text-accent text-[0.7rem] tracking-[0.22em] uppercase">05</span>
-              <span className="w-8 h-px bg-line-strong" />
-              <span className="font-mono text-[0.66rem] tracking-[0.2em] uppercase text-muted">contact</span>
-            </div>
-
             <div>
               <motion.button
                 onClick={() => setContactOpen(true)}
@@ -48,7 +42,7 @@ function Footer({ hidden = false }: { hidden?: boolean }) {
               </motion.button>
 
               <p className="mt-6 max-w-[460px] text-[0.95rem] text-text-dim leading-relaxed">
-                Looking for Summer 2027 SWE internships in quant/fintech and developer tooling. Also open to trading notes on edge compute, AI/ML, or anything Cloudflare-shaped. The inbox is open.
+                Looking for Summer 2027 software engineering internships in developer infrastructure or consumer software. The layer engineers build on, or the one users actually touch. Also open to trading notes on edge compute, AI/ML, or anything API-shaped. The inbox is open.
               </p>
             </div>
           </div>
