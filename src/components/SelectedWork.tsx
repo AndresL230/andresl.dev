@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { ArrowUpRight, Trophy } from '@phosphor-icons/react'
 import { getProject, type Project } from '@/data/projects'
 
-const featuredSlugs = ['recost', 'sapling'] as const
+const featuredSlugs = ['grove-tax', 'sapling'] as const
 
 function SelectedWork() {
   const featured = featuredSlugs

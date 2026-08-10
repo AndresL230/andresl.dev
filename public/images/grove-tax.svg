@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="'JetBrains Mono', ui-monospace, Menlo, monospace" fill="none">
+  <defs>
+    <marker id="arrAcc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dd5a22"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1c1814" stroke-width="0.5" opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <!-- background + grid -->
+  <rect width="1600" height="1000" fill="#f4f2ec"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+
+  <!-- header -->
+  <g fill="#1c1814">
+    <text x="80" y="82" font-size="20" letter-spacing="3" font-weight="500">GROVE TAX  ·  PLATFORM SYSTEMS</text>
+    <text x="80" y="108" font-size="13" letter-spacing="2" opacity="0.55">stripe connect payments  ·  gemini document extraction  ·  reviewer-gated return data</text>
+    <text x="1520" y="82" font-size="14" letter-spacing="3" fill="#dd5a22" text-anchor="end" font-weight="500">FIG. 00 / SYSTEMS</text>
+    <text x="1520" y="108" font-size="11" letter-spacing="2" text-anchor="end" opacity="0.55">live · grove.tax · a16z speedrun</text>
+  </g>
+  <line x1="80" y1="128" x2="1520" y2="128" stroke="#1c1814" opacity="0.18"/>
+
+  <!-- ============== LANE A: PAYMENTS ============== -->
+  <text x="100" y="188" font-size="10" letter-spacing="3" fill="#8c867b" font-weight="500">/ PAYMENTS · STRIPE CONNECT</text>
+
+  <!-- A01 onboarding -->
+  <g>
+    <rect x="80" y="210" width="300" height="120" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="80" y="210" width="46" height="22" fill="#dd5a22"/>
+    <text x="103" y="226" font-size="11" letter-spacing="1" fill="#fdfcf7" text-anchor="middle" font-weight="600">A01</text>
+    <text x="100" y="266" font-size="17" letter-spacing="0.5" fill="#1c1814" font-weight="500">ONBOARDING</text>
+    <text x="100" y="292" font-size="11" fill="#4f4a44">connected-account setup</text>
+    <text x="100" y="312" font-size="11" fill="#8c867b">stripe connect</text>
+  </g>
+  <line x1="392" y1="270" x2="452" y2="270" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+
+  <!-- A02 payments -->
+  <g>
+    <rect x="460" y="210" width="300" height="120" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="460" y="210" width="46" height="22" fill="#dd5a22"/>
+    <text x="483" y="226" font-size="11" letter-spacing="1" fill="#fdfcf7" text-anchor="middle" font-weight="600">A02</text>
+    <text x="480" y="266" font-size="17" letter-spacing="0.5" fill="#1c1814" font-weight="500">PAYMENTS</text>
+    <text x="480" y="292" font-size="11" fill="#4f4a44">client tax preparation</text>
+    <text x="480" y="312" font-size="11" fill="#8c867b">charges</text>
+  </g>
+  <line x1="772" y1="270" x2="832" y2="270" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+
+  <!-- A03 webhooks -->
+  <g>
+    <rect x="840" y="210" width="300" height="120" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="840" y="210" width="46" height="22" fill="#dd5a22"/>
+    <text x="863" y="226" font-size="11" letter-spacing="1" fill="#fdfcf7" text-anchor="middle" font-weight="600">A03</text>
+    <text x="860" y="266" font-size="17" letter-spacing="0.5" fill="#1c1814" font-weight="500">WEBHOOKS</text>
+    <text x="860" y="292" font-size="11" fill="#4f4a44">stripe event handling</text>
+    <text x="860" y="312" font-size="11" fill="#8c867b">async state sync</text>
+  </g>
+  <line x1="1152" y1="270" x2="1212" y2="270" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+
+  <!-- A04 payouts -->
+  <g>
+    <rect x="1220" y="210" width="300" height="120" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="1220" y="210" width="46" height="22" fill="#dd5a22"/>
+    <text x="1243" y="226" font-size="11" letter-spacing="1" fill="#fdfcf7" text-anchor="middle" font-weight="600">A04</text>
+    <text x="1240" y="266" font-size="17" letter-spacing="0.5" fill="#1c1814" font-weight="500">PAYOUTS</text>
+    <text x="1240" y="292" font-size="11" fill="#4f4a44">payout flows</text>
+    <text x="1240" y="312" font-size="11" fill="#8c867b">to connected accounts</text>
+  </g>
+
+  <text x="80" y="372" font-size="11" letter-spacing="1" fill="#8c867b">end-to-end payment path</text>
+  <line x1="80" y1="410" x2="1520" y2="410" stroke="#1c1814" opacity="0.12"/>
+
+  <!-- ============== LANE B: DOCUMENT INTELLIGENCE ============== -->
+  <text x="100" y="478" font-size="10" letter-spacing="3" fill="#8c867b" font-weight="500">/ DOCUMENT INTELLIGENCE · GEMINI ON AWS</text>
+
+  <!-- B01 source docs -->
+  <g>
+    <rect x="80" y="500" width="300" height="120" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="80" y="500" width="46" height="22" fill="#dd5a22"/>
+    <text x="103" y="516" font-size="11" letter-spacing="1" fill="#fdfcf7" text-anchor="middle" font-weight="600">B01</text>
+    <text x="100" y="556" font-size="17" letter-spacing="0.5" fill="#1c1814" font-weight="500">SOURCE DOCS</text>
+    <text x="100" y="582" font-size="11" fill="#4f4a44">taxpayer documents</text>
+    <text x="100" y="602" font-size="11" fill="#8c867b">unstructured input</text>
+  </g>
+  <line x1="392" y1="560" x2="452" y2="560" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+
+  <!-- B02 gemini extraction -->
+  <g>
+    <rect x="460" y="500" width="300" height="120" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="460" y="500" width="46" height="22" fill="#dd5a22"/>
+    <text x="483" y="516" font-size="11" letter-spacing="1" fill="#fdfcf7" text-anchor="middle" font-weight="600">B02</text>
+    <text x="480" y="556" font-size="17" letter-spacing="0.5" fill="#1c1814" font-weight="500">EXTRACTION</text>
+    <text x="480" y="582" font-size="11" fill="#4f4a44">google gemini · aws</text>
+    <text x="480" y="602" font-size="11" fill="#8c867b">structured fields</text>
+  </g>
+  <line x1="772" y1="560" x2="832" y2="560" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+
+  <!-- B03 reviewer verification (human gate, accent) -->
+  <g>
+    <rect x="840" y="500" width="300" height="120" stroke="#dd5a22" stroke-width="1.5"/>
+    <rect x="840" y="500" width="46" height="22" fill="#dd5a22"/>
+    <text x="863" y="516" font-size="11" letter-spacing="1" fill="#fdfcf7" text-anchor="middle" font-weight="600">B03</text>
+    <text x="1128" y="514" font-size="9" letter-spacing="2" fill="#dd5a22" text-anchor="end">// human gate</text>
+    <text x="860" y="556" font-size="17" letter-spacing="0.5" fill="#1c1814" font-weight="500">REVIEWER</text>
+    <text x="860" y="582" font-size="11" fill="#4f4a44">human verification</text>
+    <text x="860" y="602" font-size="11" fill="#8c867b">values confirmed before use</text>
+  </g>
+  <line x1="1152" y1="560" x2="1212" y2="560" stroke="#dd5a22" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+
+  <!-- B04 return calculations -->
+  <g>
+    <rect x="1220" y="500" width="300" height="120" stroke="#1c1814" stroke-width="1.5"/>
+    <rect x="1220" y="500" width="46" height="22" fill="#dd5a22"/>
+    <text x="1243" y="516" font-size="11" letter-spacing="1" fill="#fdfcf7" text-anchor="middle" font-weight="600">B04</text>
+    <text x="1240" y="556" font-size="17" letter-spacing="0.5" fill="#1c1814" font-weight="500">RETURN CALC</text>
+    <text x="1240" y="582" font-size="11" fill="#4f4a44">downstream calculations</text>
+    <text x="1240" y="602" font-size="11" fill="#8c867b">return-ready data</text>
+  </g>
+
+  <text x="80" y="662" font-size="11" letter-spacing="1" fill="#8c867b">values verified before they reach return calculations</text>
+
+  <!-- ============== FOOTER STRIP ============== -->
+  <g>
+    <rect x="80" y="720" width="1440" height="60" stroke="#1c1814" stroke-dasharray="3 3"/>
+    <text x="100" y="744" font-size="11" letter-spacing="2" fill="#dd5a22" font-weight="600">// SHIPPED</text>
+    <text x="200" y="744" font-size="14" fill="#1c1814" font-weight="500">3 tax-return delivery flows</text>
+    <text x="100" y="766" font-size="10" letter-spacing="1" fill="#8c867b">core service modules refactored · clearer separation of concerns · maintainability</text>
+    <text x="1500" y="756" font-size="11" letter-spacing="2" fill="#8c867b" text-anchor="end">software engineer intern</text>
+  </g>
+
+  <!-- corner registration marks -->
+  <g stroke="#1c1814" stroke-width="1">
+    <line x1="40" y1="40" x2="60" y2="40"/>
+    <line x1="40" y1="40" x2="40" y2="60"/>
+    <line x1="1540" y1="40" x2="1560" y2="40"/>
+    <line x1="1560" y1="40" x2="1560" y2="60"/>
+    <line x1="40" y1="960" x2="60" y2="960"/>
+    <line x1="40" y1="940" x2="40" y2="960"/>
+    <line x1="1540" y1="960" x2="1560" y2="960"/>
+    <line x1="1560" y1="940" x2="1560" y2="960"/>
+  </g>
+</svg>

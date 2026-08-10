@@ -25,7 +25,21 @@ const experience: ExperienceItem[] = [
       'built AI-assisted document extraction with Google Gemini on AWS, gated by reviewer verification before values hit return calculations',
       'shipped 3 tax-return delivery flows and refactored core service modules for clearer separation of concerns',
     ],
-    stack: ['Stripe Connect', 'Google Gemini', 'AWS', 'Webhooks', 'REST'],
+    stack: ['Stripe Connect', 'Google Gemini', 'AWS', 'Webhooks'],
+  },
+  {
+    role: 'AI / ML Fellow',
+    company: 'Break Through Tech · Cornell Tech',
+    date: 'Mar 2026 / Present',
+    dateShort: 'ongoing',
+    location: 'Hybrid',
+    desc: 'Completing a 9-week ML Foundations course toward a machine learning certificate from Cornell, plus a team-based industry challenge applying ML to a real business problem with mentorship from industry professionals.',
+    highlights: [
+      'building supervised and unsupervised models with full evaluation pipelines on real-world datasets',
+      'iterating on data preprocessing, feature engineering, and model selection in the team challenge',
+      'targeting the Cornell ML certificate at the end of the program',
+    ],
+    stack: ['Python', 'PyTorch', 'Pandas', 'scikit-learn'],
   },
   {
     role: 'Co-Founder & Software Engineer',
@@ -41,20 +55,6 @@ const experience: ExperienceItem[] = [
       'wired up MCP server on Durable Objects and a React dashboard surfacing cost + latency telemetry per call',
     ],
     stack: ['Cloudflare Workers', 'Hono', 'D1', 'Durable Objects', 'KV', 'React', 'Tree-sitter', 'Node.js', 'Python'],
-  },
-  {
-    role: 'AI / ML Fellow',
-    company: 'Break Through Tech · Cornell Tech',
-    date: 'Mar 2026 / Present',
-    dateShort: 'ongoing',
-    location: 'Hybrid',
-    desc: 'Completing a 9-week ML Foundations course toward a machine learning certificate from Cornell, plus a team-based industry challenge applying ML to a real business problem with mentorship from industry professionals.',
-    highlights: [
-      'building supervised and unsupervised models with full evaluation pipelines on real-world datasets',
-      'iterating on data preprocessing, feature engineering, and model selection in the team challenge',
-      'targeting the Cornell ML certificate at the end of the program',
-    ],
-    stack: ['Python', 'PyTorch', 'Pandas', 'scikit-learn'],
   },
   {
     role: 'Software Engineer',

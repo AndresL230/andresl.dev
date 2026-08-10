@@ -3,6 +3,10 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Trophy } from '@phosphor-icons/react'
 import { projects } from '../data/projects'
 
+// Grove Tax is surfaced in the "now building" section and its own case study,
+// but kept out of the chronological project archive below.
+const archive = projects.filter((p) => p.slug !== 'grove-tax')
+
 export default function Work() {
   const location = useLocation()
 
@@ -18,7 +22,7 @@ export default function Work() {
           <span className="font-mono text-accent text-[0.7rem] tracking-[0.22em] uppercase">/ work</span>
           <span className="w-8 h-px bg-line-strong" />
           <span className="font-mono text-[0.66rem] tracking-[0.2em] uppercase text-muted">
-            {projects.length} projects · 2025 / 2026
+            {archive.length} projects · 2025 / 2026
           </span>
         </motion.div>
 
@@ -44,7 +48,7 @@ export default function Work() {
         </motion.p>
 
         <div className="mt-20 md:mt-28 flex flex-col gap-20 md:gap-32">
-          {projects.map((p, i) => (
+          {archive.map((p, i) => (
             <motion.article
               key={p.slug}
               initial={{ opacity: 0, y: 30 }}
@@ -87,7 +91,7 @@ export default function Work() {
                     </div>
                   )}
                   <div className="absolute bottom-4 left-4 font-mono text-[0.62rem] tracking-[0.2em] uppercase text-text bg-bg/60 backdrop-blur-sm px-2 py-1">
-                    {String(i + 1).padStart(2, '0')} / {projects.length.toString().padStart(2, '0')}
+                    {String(i + 1).padStart(2, '0')} / {archive.length.toString().padStart(2, '0')}
                   </div>
                 </div>
               </Link>
