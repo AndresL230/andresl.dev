@@ -3,12 +3,20 @@ import { Link, useLocation } from 'react-router-dom'
 import { ArrowUpRight, Trophy } from '@phosphor-icons/react'
 import { getProject, type Project } from '@/data/projects'
 
-const featuredSlugs = ['grove-tax', 'sapling'] as const
+type Featured = { project: Project; status: string; live: boolean }
+
+const featuredConfig: { slug: string; status: string; live: boolean }[] = [
+  { slug: 'sapling', status: 'in build', live: true },
+  { slug: 'recost', status: 'shipped', live: false },
+]
 
 function SelectedWork() {
-  const featured = featuredSlugs
-    .map((s) => getProject(s))
-    .filter((p): p is Project => Boolean(p))
+  const featured: Featured[] = featuredConfig
+    .map((f) => {
+      const project = getProject(f.slug)
+      return project ? { project, status: f.status, live: f.live } : null
+    })
+    .filter((f): f is Featured => Boolean(f))
 
   return (
     <section className="relative py-28 md:py-44 border-t border-line">
@@ -23,7 +31,7 @@ function SelectedWork() {
         >
           <span className="font-mono text-accent text-[0.7rem] tracking-[0.22em] uppercase">02</span>
           <span className="w-8 h-px bg-line-strong" />
-          <span className="font-mono text-[0.66rem] tracking-[0.2em] uppercase text-muted">now building</span>
+          <span className="font-mono text-[0.66rem] tracking-[0.2em] uppercase text-muted">selected work</span>
         </motion.div>
 
         <motion.h2
@@ -34,7 +42,7 @@ function SelectedWork() {
           className="font-display font-medium tracking-[-0.025em] leading-[1.05] text-text mb-4 max-w-[860px]"
           style={{ fontSize: 'clamp(2rem, 4.8vw, 3.4rem)' }}
         >
-          Things I&apos;m building<span className="text-accent">.</span>
+          A couple worth showing<span className="text-accent">.</span>
         </motion.h2>
 
         <motion.p
@@ -44,12 +52,19 @@ function SelectedWork() {
           transition={{ duration: 0.65, delay: 0.06, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-text-dim text-[1.05rem] leading-[1.7] max-w-[620px] mb-16 md:mb-20"
         >
-          Two things actively in flight right now. The rest of the archive lives on its own page.
+          One still in flight, one shipped. The rest of the archive lives on its own page.
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-12">
-          {featured.map((p, i) => (
-            <FeatureCard key={p.slug} project={p} index={i} />
+          {featured.map((f, i) => (
+            <FeatureCard
+              key={f.project.slug}
+              project={f.project}
+              index={i}
+              total={featured.length}
+              status={f.status}
+              live={f.live}
+            />
           ))}
         </div>
 
@@ -76,7 +91,19 @@ function SelectedWork() {
   )
 }
 
-function FeatureCard({ project: p, index }: { project: Project; index: number }) {
+function FeatureCard({
+  project: p,
+  index,
+  total,
+  status,
+  live,
+}: {
+  project: Project
+  index: number
+  total: number
+  status: string
+  live: boolean
+}) {
   const location = useLocation()
   const linkState = { background: location }
   return (
@@ -89,13 +116,19 @@ function FeatureCard({ project: p, index }: { project: Project; index: number })
     >
       <div className="flex items-center justify-between mb-5 font-mono text-[0.66rem] uppercase tracking-[0.22em]">
         <span className="flex items-center gap-2">
-          <span className="relative inline-flex items-center justify-center w-2.5 h-2.5">
-            <span className="absolute inset-0 rounded-full bg-accent/40 breathe" />
-            <span className="relative w-1.5 h-1.5 rounded-full bg-accent" />
-          </span>
-          <span className="text-text-dim">in build</span>
+          {live ? (
+            <span className="relative inline-flex items-center justify-center w-2.5 h-2.5">
+              <span className="absolute inset-0 rounded-full bg-accent/40 breathe" />
+              <span className="relative w-1.5 h-1.5 rounded-full bg-accent" />
+            </span>
+          ) : (
+            <span className="inline-flex items-center justify-center w-2.5 h-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-muted-2" />
+            </span>
+          )}
+          <span className={live ? 'text-text-dim' : 'text-muted'}>{status}</span>
         </span>
-        <span className="text-muted">{String(index + 1).padStart(2, '0')} / {String(2).padStart(2, '0')}</span>
+        <span className="text-muted">{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
       </div>
 
       <Link

@@ -20,28 +20,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'grove-tax',
-    name: 'Grove Tax',
-    year: '2026',
-    award: null,
-    tagline: 'Payments and document intelligence for a tax platform — from Stripe onboarding to reviewer-gated return data.',
-    desc: 'Software engineering on an a16z Speedrun-backed tax platform: Stripe Connect payments infrastructure and AI-assisted document extraction with a human review step.',
-    img: '/images/grove-tax.svg',
-    cover: '/images/grove-tax.svg',
-    tech: ['Stripe Connect', 'Google Gemini', 'AWS', 'Webhooks'],
-    live: 'https://grove.tax/',
-    role: 'software engineer intern · a16z speedrun',
-    problem:
-      'A tax platform has to move client money and turn messy taxpayer documents into return-ready data. Both are paths where a dropped payment or a wrong extracted number is not an acceptable failure mode.',
-    solution:
-      'I work across two of those systems: Stripe Connect payments infrastructure spanning connected-account onboarding, webhook handling, and payout flows over the end-to-end payment path, and AI-assisted document extraction that pulls structured fields from source documents with a reviewer verifying every value before it reaches downstream return calculations.',
-    deepDive: [
-      'Engineered Stripe Connect payments infrastructure for client tax preparation: connected-account onboarding, webhook handling, and payout flows across the full end-to-end payment path.',
-      'Built AI-assisted document extraction tooling with Google Gemini on AWS to pull structured fields from taxpayer source documents, keeping a reviewer verification step between extraction and downstream return calculations.',
-      'Shipped 3 tax-return delivery flows and refactored core service modules for maintainability and clearer separation of concerns.',
-    ],
-  },
-  {
     slug: 'recost',
     name: 'Recost',
     year: '2026',
