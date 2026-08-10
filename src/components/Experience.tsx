@@ -14,19 +14,18 @@ type ExperienceItem = {
 
 const experience: ExperienceItem[] = [
   {
-    role: 'Co-Founder & Software Engineer',
-    company: 'Recost',
-    date: 'Feb 2026 / Present',
+    role: 'Software Engineer Intern',
+    company: 'Grove Tax',
+    date: 'Jul 2026 / Present',
     dateShort: 'ongoing',
-    location: 'Hybrid',
-    desc: 'Co-founding an API cost intelligence platform with a 3-person team. Architected the serverless backend, the VS Code extension, and the runtime SDKs end-to-end.',
+    location: 'Hybrid · a16z Speedrun',
+    desc: 'Building payments and document-intelligence infrastructure for an a16z Speedrun-backed tax platform. The work spans the end-to-end payment path and the tooling that turns taxpayer documents into structured, reviewed data.',
     highlights: [
-      'designed 30+ REST endpoints on Cloudflare Workers with Hono and D1, Google OAuth, KV-based rate limiting',
-      'built VS Code extension with web-tree-sitter to detect N+1 hotspots, batch/cache opportunities, cross-file origins',
-      'shipped Node.js + Python SDKs that intercept outbound HTTP across 8+ providers with Express, FastAPI, Flask middleware',
-      'wired up MCP server on Durable Objects and a React dashboard surfacing cost + latency telemetry per call',
+      'engineered Stripe Connect payments infra: connected-account onboarding, webhook handling, and payout flows end-to-end',
+      'built AI-assisted document extraction with Google Gemini on AWS, gated by reviewer verification before values hit return calculations',
+      'shipped 3 tax-return delivery flows and refactored core service modules for clearer separation of concerns',
     ],
-    stack: ['Cloudflare Workers', 'Hono', 'D1', 'Durable Objects', 'KV', 'React', 'Tree-sitter', 'Node.js', 'Python'],
+    stack: ['Stripe Connect', 'Google Gemini', 'AWS', 'Webhooks'],
   },
   {
     role: 'AI / ML Fellow',
@@ -41,6 +40,21 @@ const experience: ExperienceItem[] = [
       'targeting the Cornell ML certificate at the end of the program',
     ],
     stack: ['Python', 'PyTorch', 'Pandas', 'scikit-learn'],
+  },
+  {
+    role: 'Co-Founder & Software Engineer',
+    company: 'Recost',
+    date: 'Feb 2026 / Jun 2026',
+    dateShort: 'shipped',
+    location: 'Hybrid',
+    desc: 'Co-founded and incorporated an API cost intelligence platform with a 3-person team. Architected the serverless backend, the VS Code extension, and the runtime SDKs end-to-end.',
+    highlights: [
+      'designed 30+ REST endpoints on Cloudflare Workers with Hono and D1, Google OAuth, KV-based rate limiting',
+      'built VS Code extension with web-tree-sitter to detect N+1 hotspots, batch/cache opportunities, cross-file origins',
+      'shipped Node.js + Python SDKs that intercept outbound HTTP across 8+ providers with Express, FastAPI, Flask middleware',
+      'wired up MCP server on Durable Objects and a React dashboard surfacing cost + latency telemetry per call',
+    ],
+    stack: ['Cloudflare Workers', 'Hono', 'D1', 'Durable Objects', 'KV', 'React', 'Tree-sitter', 'Node.js', 'Python'],
   },
   {
     role: 'Software Engineer',
