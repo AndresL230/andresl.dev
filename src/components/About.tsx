@@ -48,7 +48,9 @@ function About() {
               <span className="text-accent">/</span> the work
             </span>
             <p className="md:col-span-9 text-[1.05rem] md:text-[1.15rem] leading-[1.8] text-text-dim max-w-[680px]">
-              Right now I&apos;m building <span className="text-text">Recost</span> — API
+              Right now I&apos;m building payments and document-intelligence infra at{' '}
+              <span className="text-text">Grove Tax</span>, an a16z Speedrun-backed tax
+              startup. Before that I co-founded <span className="text-text">Recost</span> — API
               cost intelligence on Cloudflare Workers, from SDK hooks to a VS Code extension
               to an MCP server. The rest of the week goes to backend at{' '}
               <span className="text-text">Hack4Impact BU</span> and whatever new tool I can
