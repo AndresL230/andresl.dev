@@ -128,7 +128,7 @@ function Hero() {
         >
           <p className="font-display text-text-dim leading-[1.45]"
             style={{ fontSize: 'clamp(1.44rem, 2.4vw, 1.875rem)' }}>
-            Rising junior at Boston University.
+            Junior at Boston University.
             <CurrentlyLine />
           </p>
         </motion.div>

@@ -38,7 +38,7 @@ function About() {
             className="font-display text-text leading-[1.25] tracking-[-0.02em] text-balance"
             style={{ fontSize: 'clamp(1.7rem, 3.4vw, 2.9rem)' }}
           >
-            Sophomore at <span className="text-accent">Boston University</span>, CS,
+            Junior at <span className="text-accent">Boston University</span>, CS,
             class of 2028. Started in business, got into code at hackathons, kept
             building.
           </p>
