@@ -8,6 +8,7 @@ type Featured = { project: Project; status: string; live: boolean }
 const featuredConfig: { slug: string; status: string; live: boolean }[] = [
   { slug: 'sapling', status: 'in build', live: true },
   { slug: 'recost', status: 'shipped', live: false },
+  { slug: 'canopy', status: 'shipped', live: false },
 ]
 
 function SelectedWork() {
@@ -42,7 +43,7 @@ function SelectedWork() {
           className="font-display font-medium tracking-[-0.025em] leading-[1.05] text-text mb-4 max-w-[860px]"
           style={{ fontSize: 'clamp(2rem, 4.8vw, 3.4rem)' }}
         >
-          A couple worth showing<span className="text-accent">.</span>
+          A few worth showing<span className="text-accent">.</span>
         </motion.h2>
 
         <motion.p
@@ -52,7 +53,7 @@ function SelectedWork() {
           transition={{ duration: 0.65, delay: 0.06, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-text-dim text-[1.05rem] leading-[1.7] max-w-[620px] mb-16 md:mb-20"
         >
-          One still in flight, one shipped. The rest of the archive lives on its own page.
+          One still in flight, two shipped. The rest of the archive lives on its own page.
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-12">
