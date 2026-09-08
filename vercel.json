@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/resume", "destination": "/andres-lopez-resume.pdf" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
