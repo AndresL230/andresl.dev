@@ -61,6 +61,9 @@ function Footer({ hidden = false }: { hidden?: boolean }) {
                   <FooterLink href="https://devpost.com/AndresL230">
                     devpost
                   </FooterLink>
+                  <FooterLink href="/resume">
+                    resume
+                  </FooterLink>
                   <button
                     onClick={() => setContactOpen(true)}
                     className="font-mono text-[0.78rem] text-text-dim inline-flex items-center gap-1.5"
