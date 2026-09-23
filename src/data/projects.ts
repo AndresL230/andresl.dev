@@ -77,6 +77,7 @@ export const projects: Project[] = [
     ],
     tech: ['TypeScript', 'Cloudflare Workers', 'D1', 'Hono', 'Model Context Protocol', 'SQLite FTS5'],
     url: 'https://github.com/SaplingLearn/canopy',
+    live: 'https://canopy.saplinglearn.com',
     role: 'solo · 479 of 496 commits',
     problem:
       'Every agent session started from zero, re-deriving decisions buried in old PRs. Letting agents write to a shared store fixes that, but nothing an LLM writes should publish unreviewed.',

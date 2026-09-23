@@ -8,7 +8,7 @@ type Featured = { project: Project; status: string; live: boolean }
 const featuredConfig: { slug: string; status: string; live: boolean }[] = [
   { slug: 'sapling', status: 'in build', live: true },
   { slug: 'recost', status: 'shipped', live: false },
-  { slug: 'canopy', status: 'shipped', live: false },
+  { slug: 'canopy', status: 'shipped', live: true },
 ]
 
 function SelectedWork() {
