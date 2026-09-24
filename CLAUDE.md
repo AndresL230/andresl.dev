@@ -2,7 +2,7 @@
 
 ## Design Context
 
-Visual / UX direction lives in `.impeccable.md` at the project root. **Read it before changing any visual treatment, copy tone, or adding new sections.** TL;DR: editorial-meets-terminal on warm paper, single orange accent used as punctuation, JetBrains Mono for chrome + Geist for content, hairlines not boxes, slow exponential-ease motion, grain overlay always on.
+Visual / UX direction lives in `.impeccable.md` at the project root. **Read it before changing any visual treatment, copy tone, or adding new sections.** TL;DR: editorial-meets-terminal on warm paper (with a warm-ink dark theme), single orange accent used as punctuation, JetBrains Mono for chrome + Geist for content, hairlines not boxes, slow exponential-ease motion, grain overlay always on.
 
 ## Stack
 
@@ -34,6 +34,7 @@ andresl.dev/
 │   │   ├── SelectedWork.tsx  # Featured projects grid on landing
 │   │   ├── CaseStudy.tsx     # Shared body for ProjectCase + ProjectModal
 │   │   ├── ContactModal.tsx
+│   │   ├── ThemeToggle.tsx   # Light/dark toggle in the nav
 │   │   ├── Footer.tsx
 │   │   ├── ScrollToTop.tsx
 │   │   └── ui/
@@ -41,6 +42,7 @@ andresl.dev/
 │   ├── data/
 │   │   └── projects.ts       # Typed Project[] + getProject(slug) helper — single source of truth
 │   ├── lib/
+│   │   ├── theme.ts          # Theme store: useTheme(), setTheme(), themedSrc() for dark image variants
 │   │   └── utils.ts          # cn() = clsx + tailwind-merge
 │   └── vite-env.d.ts
 └── public/
@@ -109,7 +111,8 @@ npm run lint      # eslint
 ### Styling
 - Tailwind v4 utilities everywhere. No CSS modules. No styled-components.
 - Design tokens live in the `@theme { ... }` block in `src/index.css`:
-  - Colors: `bg`, `surface`, `surface-2`, `line`, `line-strong`, `text`, `text-dim`, `muted`, `muted-2`, `accent`, `accent-dim`, `accent-ink`
+  - Colors: `bg`, `surface`, `surface-2`, `line`, `line-strong`, `text`, `text-dim`, `muted`, `muted-2`, `accent`, `accent-dim`, `accent-ink`, `scrim`
+  - Dark theme overrides the same tokens under `:root[data-theme="dark"]`. Always use tokens — never hardcode colors — and dark mode comes for free. Use `bg-scrim` for modal backdrops, not `bg-text/…`.
   - Fonts: `font-display` (Geist), `font-mono` (JetBrains Mono), `font-sans` (Geist)
   - Shadows: `shadow-soft`, `shadow-glass-inset`
 - Custom utilities defined in `@layer utilities`: `.grain`, `.reveal` + `.reveal--in`, `.breathe`, `.glass`, `.hairline-t`, `.hairline-b`, `.text-balance`, `.text-pretty`, `.font-display`, `.font-mono`.

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { ArrowUpRight, Trophy } from '@phosphor-icons/react'
 import { getProject, type Project } from '@/data/projects'
+import { themedSrc, useTheme } from '@/lib/theme'
 
 type Featured = { project: Project; status: string; live: boolean }
 
@@ -106,6 +107,7 @@ function FeatureCard({
   live: boolean
 }) {
   const location = useLocation()
+  const { theme } = useTheme()
   const linkState = { background: location }
   return (
     <motion.div
@@ -140,7 +142,7 @@ function FeatureCard({
         <div className="aspect-[16/10] relative">
           {p.cover && (
             <img
-              src={p.cover}
+              src={themedSrc(p.cover, theme)}
               alt={p.name}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               loading="lazy"

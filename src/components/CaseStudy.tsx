@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { ArrowUpRight, ArrowLeft, ArrowRight, Trophy } from '@phosphor-icons/react'
 import { getAdjacent, type Project } from '../data/projects'
+import { themedSrc, useTheme } from '@/lib/theme'
 
 type Props = {
   project: Project
@@ -10,6 +11,7 @@ type Props = {
 
 export default function CaseStudy({ project: p }: Props) {
   const location = useLocation()
+  const { theme } = useTheme()
   const state = location.state as { background?: Location } | null
   const adjacent = getAdjacent(p.slug)
 
@@ -61,7 +63,7 @@ export default function CaseStudy({ project: p }: Props) {
           <div className="bg-surface border border-line p-3 md:p-6">
             <div className="border border-line-strong/40 overflow-hidden">
               <img
-                src={p.cover}
+                src={themedSrc(p.cover, theme)}
                 alt={`${p.name} interface`}
                 className="block w-full h-auto"
                 loading="lazy"
@@ -118,7 +120,7 @@ export default function CaseStudy({ project: p }: Props) {
                 <div className="bg-surface border border-line p-3 md:p-6">
                   <div className="border border-line-strong/40 overflow-hidden">
                     <img
-                      src={shot.src}
+                      src={themedSrc(shot.src, theme)}
                       alt={shot.caption}
                       className="block w-full h-auto"
                       loading="lazy"

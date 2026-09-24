@@ -15,12 +15,43 @@
   --color-accent-dim: rgba(221, 90, 34, 0.13);
   --color-accent-ink: #fdfcf7;
   --color-error: oklch(58% 0.18 25);
+  --color-scrim: rgba(28, 24, 18, 0.70);
 
   --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
 
   --shadow-soft: 0 24px 60px -28px rgba(28, 24, 18, 0.22);
+}
+
+/*
+ * Dark theme — the same notebook read by lamplight. Warm ink ground, cream
+ * type, one orange. Nothing goes to pure black or pure white. Toggled via
+ * `data-theme` on <html> (set pre-paint by the inline script in index.html).
+ */
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #14110d;
+  --color-surface: #1c1813;
+  --color-surface-2: #25201a;
+  --color-line: rgba(237, 229, 211, 0.09);
+  --color-line-strong: rgba(237, 229, 211, 0.17);
+  --color-text: #ede5d3;
+  --color-text-dim: #b3aa99;
+  --color-muted: #7d766a;
+  --color-muted-2: #4d473e;
+  --color-accent: #e5652c;
+  --color-accent-dim: rgba(229, 101, 44, 0.16);
+  --color-accent-ink: #fdfcf7;
+  --color-error: oklch(68% 0.17 28);
+  --color-scrim: rgba(8, 6, 4, 0.72);
+
+  --shadow-soft: 0 24px 60px -28px rgba(0, 0, 0, 0.7);
 }
 
 @layer base {
@@ -42,6 +73,18 @@
     .breathe {
       animation: none;
     }
+  }
+
+  /* Screenshots are shot on white; take the glare off them against the dark ground. */
+  :root[data-theme="dark"] img:not([src$=".svg"]) {
+    filter: brightness(0.9);
+  }
+
+  /* Theme switch cross-fade (View Transitions API, see lib/theme.ts). */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   #about, #building, #experience, #skills {
@@ -104,6 +147,13 @@
     opacity: 0.07;
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Multiply does nothing on a dark ground — flip the noise to light specks and screen it in. */
+  :root[data-theme="dark"] .grain {
+    opacity: 0.06;
+    mix-blend-mode: screen;
+    filter: invert(1);
   }
 
   .reveal {

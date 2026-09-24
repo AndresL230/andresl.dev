@@ -2,9 +2,11 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Trophy } from '@phosphor-icons/react'
 import { projects } from '../data/projects'
+import { themedSrc, useTheme } from '@/lib/theme'
 
 export default function Work() {
   const location = useLocation()
+  const { theme } = useTheme()
 
   return (
     <section className="pt-[110px] pb-32 md:pb-40">
@@ -62,7 +64,7 @@ export default function Work() {
                   {p.cover ? (
                     <>
                       <img
-                        src={p.cover}
+                        src={themedSrc(p.cover, theme)}
                         alt={p.name}
                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.025] transition-transform duration-700"
                       />

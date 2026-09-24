@@ -5,7 +5,21 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#f4f2ec" />
+    <meta name="theme-color" content="#f5efe1" />
+    <script>
+      // Set the theme before first paint so dark visitors never see a cream flash.
+      (function () {
+        var t
+        try { t = localStorage.getItem('theme') } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = t
+        if (t === 'dark') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#14110d')
+        }
+      })()
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Andres Lopez — Software engineer at Boston University, building developer tools and edge infrastructure." />
     <title>andresl.dev</title>

@@ -100,7 +100,7 @@ function ContactModal({ onClose }: ContactModalProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.22 }}
           onMouseDown={(e) => { if (e.target === e.currentTarget) close() }}
-          className="fixed inset-0 z-[300] flex items-center justify-center p-4 md:p-6 bg-text/70"
+          className="fixed inset-0 z-[300] flex items-center justify-center p-4 md:p-6 bg-scrim"
         >
           <motion.div
             ref={panelRef}

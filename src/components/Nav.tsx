@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { List, X } from '@phosphor-icons/react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
 type NavLink =
   | { kind: 'scroll'; id: string; label: string }
@@ -65,16 +66,21 @@ function Nav() {
               </Link>
             )
           })}
+          <span aria-hidden className="h-4 w-px bg-line-strong" />
+          <ThemeToggle className="-ml-3 w-9 h-9" />
         </nav>
 
-        <button
-          className="md:hidden text-text -mr-2 p-3"
-          onClick={() => setOpen((o) => !o)}
-          aria-label="Toggle navigation menu"
-          aria-expanded={open}
-        >
-          {open ? <X size={22} weight="light" /> : <List size={22} weight="light" />}
-        </button>
+        <div className="md:hidden flex items-center -mr-2">
+          <ThemeToggle className="w-11 h-11" />
+          <button
+            className="text-text p-3"
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={open}
+          >
+            {open ? <X size={22} weight="light" /> : <List size={22} weight="light" />}
+          </button>
+        </div>
       </div>
 
       <motion.div
