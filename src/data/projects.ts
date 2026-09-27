@@ -71,23 +71,23 @@ export const projects: Project[] = [
     cover: '/images/canopy.png',
     gallery: [
       { src: '/images/canopy_repo.png', caption: 'Canopy · repo dashboard (sample data)' },
-      { src: '/images/canopy_sprint.png', caption: 'Canopy · a sprint and its tickets' },
+      { src: '/images/canopy_timeline.png', caption: 'Canopy · sprints on the roadmap calendar' },
       { src: '/images/canopy_review.png', caption: 'Canopy · an agent’s staged edit awaiting review' },
       { src: '/images/canopy_artifact.png', caption: 'Canopy · a versioned artifact, ratified by a person' },
     ],
     tech: ['TypeScript', 'Cloudflare Workers', 'D1', 'R2', 'Hono', 'Model Context Protocol'],
     url: 'https://github.com/SaplingLearn/canopy',
     live: 'https://canopy.saplinglearn.com',
-    role: 'solo · 513 of 530 commits',
+    role: 'solo · 587 of 604 commits',
     problem:
       'Every agent session started from zero, re-deriving decisions buried in old PRs. Letting agents write to a shared store fixes that, but nothing an LLM writes should publish unreviewed.',
     solution:
-      'Canopy is that store. Agents read and propose over MCP; every write lands staged until a human approves it. Around it: tickets and sprints, session handoffs, versioned artifacts, and a repo dashboard.',
+      'Canopy is that store. Agents read and propose over MCP; every write lands staged until a human approves it. Around it: a ticket board fed by GitHub issues, sprints, session handoffs, versioned artifacts, and a repo dashboard.',
     deepDive: [
-      'One Worker serves the API, a stateless MCP endpoint on the official SDK, a GitHub webhook, and the SPA. D1 holds the data, R2 the artifact files.',
+      'One Worker serves the API, a stateless MCP endpoint on the official SDK that agents sign in to by browser, a GitHub webhook, and the SPA. D1 holds the data, R2 the files.',
       'Every agent-proposed doc and decision passes one gate: a replay ledger, content-hash dedupe, and a line diff that types each change. Approving is never an MCP tool.',
-      'Agents can only touch tickets their person is assigned to. Nothing is closed automatically; a person decides.',
-      'The repo dashboard reads only captured data, never GitHub at render, and shows "not connected" instead of a guessed zero. Over 2,000 tests run against real D1.',
+      'Agents can only touch tickets their person is assigned to. A merged PR never closes a ticket; a person decides.',
+      'The repo dashboard reads only captured data, never GitHub at render, and shows "not connected" instead of a guessed zero. Over 2,500 tests run against real D1.',
     ],
   },
   {
