@@ -7,8 +7,8 @@ type Featured = { project: Project; status: string; live: boolean }
 
 const featuredConfig: { slug: string; status: string; live: boolean }[] = [
   { slug: 'sapling', status: 'in build', live: true },
+  { slug: 'trov', status: 'in build', live: true },
   { slug: 'recost', status: 'shipped', live: false },
-  { slug: 'trov', status: 'shipped', live: true },
 ]
 
 function SelectedWork() {
@@ -53,7 +53,7 @@ function SelectedWork() {
           transition={{ duration: 0.65, delay: 0.06, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-text-dim text-[1.05rem] leading-[1.7] max-w-[620px] mb-16 md:mb-20"
         >
-          One still in flight, two shipped. The rest of the archive lives on its own page.
+          Two still in flight, one shipped. The rest of the archive lives on its own page.
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-12">

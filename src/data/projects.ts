@@ -70,6 +70,7 @@ export const projects: Project[] = [
     img: '/images/trov.png',
     cover: '/images/trov.png',
     gallery: [
+      { src: '/images/trov_mywork.png', caption: 'Trov · My Work, one person’s plate' },
       { src: '/images/trov_repo.png', caption: 'Trov · repo dashboard (sample data)' },
       { src: '/images/trov_timeline.png', caption: 'Trov · sprints on the roadmap calendar' },
       { src: '/images/trov_review.png', caption: 'Trov · an agent’s staged edit awaiting review' },
